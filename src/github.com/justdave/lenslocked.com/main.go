@@ -9,8 +9,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var homeView *views.View    //This is a frowned upon global variable, TODO: refactor dis
-var contactView *views.View //This is a frowned upon global variable, TODO: refactor dis
+var homeView *views.View
+var contactView *views.View
 
 func main() {
 
