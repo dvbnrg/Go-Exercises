@@ -13,7 +13,7 @@ var m map[string]string
 func main() {
 	m = make(map[string]string)
 	m["key"] = "value"
-	fmt.Println(m["key"])
+	//fmt.Println(m["key"])
 
 	//var h http.Handler = http.HandlerFunc(home)
 	r := mux.NewRouter()
@@ -39,7 +39,6 @@ func get(w http.ResponseWriter, r *http.Request) {
 	} else {
 		fmt.Println("404 key not found")
 	}
-
 }
 
 func put(w http.ResponseWriter, r *http.Request) {
