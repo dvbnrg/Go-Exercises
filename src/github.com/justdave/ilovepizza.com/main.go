@@ -1,11 +1,9 @@
 package main
 
 import (
-	"encoding/csv"
 	"encoding/json"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/gorilla/mux"
 )
@@ -68,24 +66,9 @@ func delete(w http.ResponseWriter, req *http.Request) {
 }
 
 func dumpcsv(w http.ResponseWriter, req *http.Request) {
-	file, err := os.Create("address.csv")
-	checkError("Cannot create file", err)
-	defer file.Close()
-	writer := csv.NewWriter(file)
-	defer writer.Flush()
 
-	for _, value := range customers {
-		err := writer.Write(value)
-		checkError("Cannot write to file", err)
-	}
 }
 
 func grabcsv(w http.ResponseWriter, req *http.Request) {
 
-}
-
-func checkError(message string, err error) {
-	if err != nil {
-		log.Fatal(message, err)
-	}
 }
