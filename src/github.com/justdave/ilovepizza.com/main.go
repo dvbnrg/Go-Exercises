@@ -74,6 +74,7 @@ func dumpcsv(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		os.Exit(1)
 	}
+
 	x := []string{"Country", "City", "Population"}
 	y := []string{"Japan", "Tokyo", "923456"}
 	z := []string{"Australia", "Sydney", "789650"}
@@ -85,4 +86,12 @@ func dumpcsv(w http.ResponseWriter, req *http.Request) {
 
 func grabcsv(w http.ResponseWriter, req *http.Request) {
 
+}
+
+func tostring(c customer) string {
+	out, err := json.Marshal(c)
+	if err != nil {
+		panic(err)
+	}
+	return string(out)
 }
