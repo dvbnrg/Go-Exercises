@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/csv"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -30,6 +31,7 @@ func main() {
 	router.HandleFunc("/export", dumpcsv).Methods("GET")
 	router.HandleFunc("/import", grabcsv).Methods("PUT")
 	log.Fatal(http.ListenAndServe(":3000", router))
+
 }
 
 func create(w http.ResponseWriter, req *http.Request) {
@@ -75,11 +77,9 @@ func dumpcsv(w http.ResponseWriter, req *http.Request) {
 		os.Exit(1)
 	}
 
-	x := []string{"Country", "City", "Population"}
-	y := []string{"Japan", "Tokyo", "923456"}
-	z := []string{"Australia", "Sydney", "789650"}
+	s := customers[:0]
 	csvWriter := csv.NewWriter(file)
-	strWrite := [][]string{x, y, z}
+	strWrite := parseobject(s)
 	csvWriter.WriteAll(strWrite)
 	csvWriter.Flush()
 }
@@ -94,4 +94,12 @@ func tostring(c customer) string {
 		panic(err)
 	}
 	return string(out)
+}
+
+func parseobject(c []customer) [][]string {
+	result := [][]string{}
+	for i := 0; i < len(c); i++ {
+		fmt.Println(c[i].Email + c[i].Firstname + c[i].Lastname + c[i].Phone)
+	}
+	return result
 }
