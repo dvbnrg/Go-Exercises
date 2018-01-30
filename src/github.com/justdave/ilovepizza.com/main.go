@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -81,10 +83,33 @@ func dumpcsv(w http.ResponseWriter, req *http.Request) {
 	strWrite := parseobject(customers)
 	csvWriter.WriteAll(strWrite)
 	csvWriter.Flush()
+	fmt.Println("Data has been dumped")
 }
 
 func grabcsv(w http.ResponseWriter, req *http.Request) {
+	file, err := os.Open("grab.csv")
+	reader := csv.NewReader(bufio.NewReader(file))
 
+	if err != nil {
+		os.Exit(1)
+	}
+
+	for {
+		line, error := reader.Read()
+		if error == io.EOF {
+			break
+		} else if error != nil {
+			log.Fatal(error)
+		}
+		customers = append(customers, customer{
+			Firstname: line[0],
+			Lastname:  line[1],
+			Phone:     line[2],
+			Email:     line[3],
+		},
+		)
+	}
+	fmt.Println("Data has been grabbed")
 }
 
 func tostring(c customer) string {
@@ -98,20 +123,19 @@ func tostring(c customer) string {
 func parseobject(c []customer) [][]string {
 	result := make([][]string, 4)
 	for i := range c {
-		out := c[i].Email + ", " + c[i].Firstname + ", " + c[i].Lastname + ", " + c[i].Phone
-		fmt.Println("Full String:" + out)
+		//out := c[i].Email + ", " + c[i].Firstname + ", " + c[i].Lastname + ", " + c[i].Phone
+		//fmt.Println("Full String:" + out)
 
 		result[i] = make([]string, 4)
-		fmt.Println("Output i: ", i)
-
+		//fmt.Println("Output i: ", i)
 		result[i] = append(result[i], c[i].Email)
-		fmt.Println(result[i])
+		//fmt.Println(result[i])
 		result[i] = append(result[i], c[i].Firstname)
-		fmt.Println(result[i])
+		//fmt.Println(result[i])
 		result[i] = append(result[i], c[i].Lastname)
-		fmt.Println(result[i])
+		//fmt.Println(result[i])
 		result[i] = append(result[i], c[i].Phone)
-		fmt.Println(result[i])
+		//fmt.Println(result[i])
 
 	}
 	return result

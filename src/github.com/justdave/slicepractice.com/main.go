@@ -69,13 +69,20 @@ func parseobject(c []customer) [][]string {
 	result := make([][]string, 4)
 	for i := range c {
 		out := c[i].Email + ", " + c[i].Firstname + ", " + c[i].Lastname + ", " + c[i].Phone
-		fmt.Println(out)
+		fmt.Println("Full String:" + out)
+
 		result[i] = make([]string, 4)
-		fmt.Println("Output i:", i)
-		for j := range result[i] {
-			result[j] = append(result[i], out)
-			fmt.Println("Output j:", j, "result j:", result[j])
-		}
+		fmt.Println("Output i: ", i)
+
+		result[i] = append(result[i], c[i].Email)
+		fmt.Println(result[i])
+		result[i] = append(result[i], c[i].Firstname)
+		fmt.Println(result[i])
+		result[i] = append(result[i], c[i].Lastname)
+		fmt.Println(result[i])
+		result[i] = append(result[i], c[i].Phone)
+		fmt.Println(result[i])
+
 	}
 	return result
 }
