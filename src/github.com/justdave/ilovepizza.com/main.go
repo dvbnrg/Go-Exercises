@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/csv"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -17,11 +18,13 @@ type customer struct {
 	Email     string `json:"email,omitempty"`
 }
 
+var customers []customer
+
 func main() {
 	router := mux.NewRouter()
-	var customers []customer
 	customers = append(customers, customer{Email: "asdf", Firstname: "asdf", Lastname: "asdf", Phone: "1800"})
 	customers = append(customers, customer{Email: "qwer", Firstname: "qwer", Lastname: "qwer", Phone: "1900"})
+	customers = append(customers, customer{Email: "zxcv", Firstname: "zc", Lastname: "cv", Phone: "2000"})
 	router.HandleFunc("/customer", readAll).Methods("GET")
 	router.HandleFunc("/customer/{phone}", read).Methods("GET")
 	router.HandleFunc("/customer/{phone}", create).Methods("PUT")
@@ -68,19 +71,16 @@ func delete(w http.ResponseWriter, req *http.Request) {
 }
 
 func dumpcsv(w http.ResponseWriter, req *http.Request) {
-	file, err := os.OpenFile("test.csv", os.O_CREATE|os.O_WRONLY, 0777)
+	file, err := os.OpenFile("dump.csv", os.O_CREATE|os.O_WRONLY, 0777)
 	defer file.Close()
 
 	if err != nil {
 		os.Exit(1)
 	}
-	/*
-		s := customers[:0]
-		csvWriter := csv.NewWriter(file)
-		strWrite := parseobject(s)
-		csvWriter.WriteAll(strWrite)
-		csvWriter.Flush()
-	*/
+	csvWriter := csv.NewWriter(file)
+	strWrite := parseobject(customers)
+	csvWriter.WriteAll(strWrite)
+	csvWriter.Flush()
 }
 
 func grabcsv(w http.ResponseWriter, req *http.Request) {
@@ -95,10 +95,24 @@ func tostring(c customer) string {
 	return string(out)
 }
 
-func parseobject(c []customer) [4][]string {
-	result := [4][]string{}
-	for i := 0; i < len(c); i++ {
-		fmt.Println(c[i].Email + c[i].Firstname + c[i].Lastname + c[i].Phone)
+func parseobject(c []customer) [][]string {
+	result := make([][]string, 4)
+	for i := range c {
+		out := c[i].Email + ", " + c[i].Firstname + ", " + c[i].Lastname + ", " + c[i].Phone
+		fmt.Println("Full String:" + out)
+
+		result[i] = make([]string, 4)
+		fmt.Println("Output i: ", i)
+
+		result[i] = append(result[i], c[i].Email)
+		fmt.Println(result[i])
+		result[i] = append(result[i], c[i].Firstname)
+		fmt.Println(result[i])
+		result[i] = append(result[i], c[i].Lastname)
+		fmt.Println(result[i])
+		result[i] = append(result[i], c[i].Phone)
+		fmt.Println(result[i])
+
 	}
 	return result
 }
