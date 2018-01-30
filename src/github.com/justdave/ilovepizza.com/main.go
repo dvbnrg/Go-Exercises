@@ -24,17 +24,16 @@ var customers []customer
 
 func main() {
 	router := mux.NewRouter()
-	customers = append(customers, customer{Email: "asdf", Firstname: "asdf", Lastname: "asdf", Phone: "1800"})
-	customers = append(customers, customer{Email: "qwer", Firstname: "qwer", Lastname: "qwer", Phone: "1900"})
-	customers = append(customers, customer{Email: "zxcv", Firstname: "zc", Lastname: "cv", Phone: "2000"})
+	customers = append(customers, customer{Email: "asdf", Firstname: "as", Lastname: "df", Phone: "1800"})
+	customers = append(customers, customer{Email: "qwer", Firstname: "qw", Lastname: "er", Phone: "1900"})
+	customers = append(customers, customer{Email: "zxcv", Firstname: "zx", Lastname: "cv", Phone: "2000"})
 	router.HandleFunc("/customer", readAll).Methods("GET")
 	router.HandleFunc("/customer/{phone}", read).Methods("GET")
 	router.HandleFunc("/customer/{phone}", create).Methods("PUT")
 	router.HandleFunc("/customer/{phone}", delete).Methods("DELETE")
 	router.HandleFunc("/export", dumpcsv).Methods("GET")
-	router.HandleFunc("/import", grabcsv).Methods("PUT")
+	router.HandleFunc("/import", grabcsv).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", router))
-
 }
 
 func create(w http.ResponseWriter, req *http.Request) {
@@ -109,11 +108,12 @@ func grabcsv(w http.ResponseWriter, req *http.Request) {
 		},
 		)
 	}
+	parseobject(customers)
 	fmt.Println("Data has been grabbed")
 }
 
 func parseobject(c []customer) [][]string {
-	result := make([][]string, 4)
+	result := make([][]string, 15)
 	for i := range c {
 		result[i] = make([]string, 4)
 		result[i] = append(result[i], c[i].Email)

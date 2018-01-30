@@ -16,7 +16,7 @@ func Router() *mux.Router {
 }
 
 func TestCreate(t *testing.T) {
-	request, _ := http.NewRequest("GET", "/customers", nil)
+	request, _ := http.NewRequest("GET", "/customer", nil)
 	response := httptest.NewRecorder()
 	Router().ServeHTTP(response, request)
 	assert.Equal(t, 200, response.Code, "OK response is expected")
