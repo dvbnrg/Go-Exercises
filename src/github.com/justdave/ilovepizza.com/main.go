@@ -112,31 +112,14 @@ func grabcsv(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Data has been grabbed")
 }
 
-func tostring(c customer) string {
-	out, err := json.Marshal(c)
-	if err != nil {
-		panic(err)
-	}
-	return string(out)
-}
-
 func parseobject(c []customer) [][]string {
 	result := make([][]string, 4)
 	for i := range c {
-		//out := c[i].Email + ", " + c[i].Firstname + ", " + c[i].Lastname + ", " + c[i].Phone
-		//fmt.Println("Full String:" + out)
-
 		result[i] = make([]string, 4)
-		//fmt.Println("Output i: ", i)
 		result[i] = append(result[i], c[i].Email)
-		//fmt.Println(result[i])
 		result[i] = append(result[i], c[i].Firstname)
-		//fmt.Println(result[i])
 		result[i] = append(result[i], c[i].Lastname)
-		//fmt.Println(result[i])
 		result[i] = append(result[i], c[i].Phone)
-		//fmt.Println(result[i])
-
 	}
 	return result
 }
