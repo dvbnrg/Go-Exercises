@@ -41,3 +41,7 @@ func TestDumpcsv(t *testing.T) {
 func TestGrabcsv(t *testing.T) {
 
 }
+
+func TestParseobject(t *testing.T) {
+
+}

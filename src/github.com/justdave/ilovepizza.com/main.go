@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/csv"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -18,10 +17,9 @@ type customer struct {
 	Email     string `json:"email,omitempty"`
 }
 
-var customers []customer
-
 func main() {
 	router := mux.NewRouter()
+	var customers []customer
 	customers = append(customers, customer{Email: "asdf", Firstname: "asdf", Lastname: "asdf", Phone: "1800"})
 	customers = append(customers, customer{Email: "qwer", Firstname: "qwer", Lastname: "qwer", Phone: "1900"})
 	router.HandleFunc("/customer", readAll).Methods("GET")
@@ -76,12 +74,13 @@ func dumpcsv(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		os.Exit(1)
 	}
-
-	s := customers[:0]
-	csvWriter := csv.NewWriter(file)
-	strWrite := parseobject(s)
-	csvWriter.WriteAll(strWrite)
-	csvWriter.Flush()
+	/*
+		s := customers[:0]
+		csvWriter := csv.NewWriter(file)
+		strWrite := parseobject(s)
+		csvWriter.WriteAll(strWrite)
+		csvWriter.Flush()
+	*/
 }
 
 func grabcsv(w http.ResponseWriter, req *http.Request) {
@@ -96,8 +95,8 @@ func tostring(c customer) string {
 	return string(out)
 }
 
-func parseobject(c []customer) [][]string {
-	result := [][]string{}
+func parseobject(c []customer) [4][]string {
+	result := [4][]string{}
 	for i := 0; i < len(c); i++ {
 		fmt.Println(c[i].Email + c[i].Firstname + c[i].Lastname + c[i].Phone)
 	}
