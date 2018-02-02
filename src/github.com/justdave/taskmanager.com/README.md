@@ -1,1 +1,0 @@
-This is a REST API from Web Development with Go by Shiju Varghese.
