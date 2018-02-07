@@ -1,0 +1,8 @@
+FROM golang
+ADD . /topgolf
+WORKDIR /topgolf
+RUN pwd
+RUN ls -la 
+RUN cd
+RUN go build main.go 
+CMD [ "./main" ]
