@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -33,6 +34,15 @@ func login(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("username:", r.Form["username"])
 		fmt.Println("password:", r.Form["password"])
 	}
+	v := url.Values{}
+	v.Set("name", "Ava")
+	v.Add("friend", "Jess")
+	v.Add("friend", "Sarah")
+	v.Add("friend", "Zoe")
+	// v.Encode() == "name=Ava&friend=Jess&friend=Sarah&friend=Zoe"
+	fmt.Println(v.Get("name"))
+	fmt.Println(v.Get("friend"))
+	fmt.Println(v["friend"])
 }
 
 func main() {
