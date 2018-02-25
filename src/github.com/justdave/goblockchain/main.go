@@ -15,6 +15,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
+//Block Data Model
 type Block struct {
 	Index     int
 	Timestamp string
@@ -23,6 +24,7 @@ type Block struct {
 	PrevHash  string
 }
 
+//Blockchain is an array of blocks
 var Blockchain []Block
 
 func calculateHash(block Block) string {
@@ -105,6 +107,7 @@ func handleGetBlockchain(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, string(bytes))
 }
 
+//Message is bla
 type Message struct {
 	BPM int
 }
