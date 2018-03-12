@@ -121,7 +121,6 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprintf(w, string(jsonResp))
 }
 
-/*
 //Update returns the new state of updated property
 func Update(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	//get environment variables
@@ -137,22 +136,24 @@ func Update(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		fmt.Println(err.Error())
 	}
 
-	//Get id from incoming URl
+	//Get id from incoming URl with gin
 
 	//create TODO
+	todo := Todo{}
 
 	//Decode incoming Json
+	json.NewDecoder(r.Body).Decode(&todo)
 
-	//Check if ID exists else toss out bad ID's
-
-	//Update statement then close DB connection
+	//Update statement then close DB connection && Check if ID exists else toss out bad ID's
+	db.QueryRow("UPDATE todo SET title=$2, status=$3 WHERE id=$1", todo.ID)
+	db.QueryRow("SELECT id, title, status FROM todo WHERE id=$1", todo.ID).Scan(&todo.ID, &todo.Title, &todo.Status)
+	defer db.Close()
 
 	//format to and return Json
-	jsonResp, _ := json.Marshal(Todos{TodoList: todoList})
+	jsonResp, _ := json.Marshal(todo)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
 	//ship json
 	fmt.Fprintf(w, string(jsonResp))
 }
-*/
