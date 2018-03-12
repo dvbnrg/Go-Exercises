@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gin-gonic/gin"
+
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -122,7 +124,7 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 //Update returns the new state of updated property
-func Update(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func Update(w http.ResponseWriter, r *http.Request, _ httprouter.Params, c *gin.Context) {
 	//get environment variables
 	dbUser := os.Getenv("DB_USER")
 	dbHost := os.Getenv("DB_HOST")
@@ -136,17 +138,20 @@ func Update(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		fmt.Println(err.Error())
 	}
 
-	//Get id from incoming URl with gin
-
 	//create TODO
 	todo := Todo{}
+
+	//Get id from incoming URl with gin
+	todoID := c.Param("id")
+
+	//Check if ID exists else toss out bad ID's
+	db.QueryRow("SELECT id FROM todo WHERE id=$1", todoID).Scan(&todo.ID)
 
 	//Decode incoming Json
 	json.NewDecoder(r.Body).Decode(&todo)
 
-	//Update statement then close DB connection && Check if ID exists else toss out bad ID's
-	db.QueryRow("UPDATE todo SET title=$2, status=$3 WHERE id=$1", todo.ID)
-	db.QueryRow("SELECT id, title, status FROM todo WHERE id=$1", todo.ID).Scan(&todo.ID, &todo.Title, &todo.Status)
+	//Update statement then close DB connection
+	db.QueryRow("UPDATE todo SET title=$2, status=$3 WHERE id=$1", todo.ID).Scan(&todo.ID, &todo.Title, &todo.Status)
 	defer db.Close()
 
 	//format to and return Json
