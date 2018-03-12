@@ -15,7 +15,7 @@ import (
 func Status(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	log.Println("Status Request Received")
 	w.WriteHeader(200)
-	fmt.Fprint(w, "OK\n")
+	fmt.Fprint(w, "200 OK\n")
 }
 
 func main() {
@@ -23,6 +23,7 @@ func main() {
 	router.GET("/", Status)
 	router.POST("/todos", todo.Create)
 	router.GET("/todos", todo.List)
+	//router.PUT("/todos/{todoID}", todo.Update)
 
 	log.Println("Starting server...")
 
