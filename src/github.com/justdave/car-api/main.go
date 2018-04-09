@@ -71,6 +71,13 @@ type Lamborghini struct {
 	Model string
 }
 
+//Porsche is another type of Car
+type Porsche struct {
+	car
+	Owner string
+	Model string
+}
+
 func fly(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "I am but a leaf in the wind watch me Soar!")
 }
@@ -88,15 +95,26 @@ func main() {
 						Mileage: 1200,
 					},
 				},
-				Owner: "ME",
+				Owner: "SCOTT",
+				Model: "MURCIELAGO",
 			},
 			&Ferrari{
 				car: car{
 					Engine: Engine{
-						Mileage: 1200,
+						Mileage: 700,
 					},
 				},
 				Owner: "DAVE",
+				Model: "ENZO",
+			},
+			&Porsche{
+				car: car{
+					Engine: Engine{
+						Mileage: 54000,
+					},
+				},
+				Owner: "TIM",
+				Model: "911 TURBO",
 			},
 		},
 	}
