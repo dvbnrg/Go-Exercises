@@ -12,12 +12,6 @@ type Book struct {
 	Messages []Message
 }
 
-func (b Book) Handler() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		json.NewEncoder(w).Encode(b)
-	}
-}
-
 func (b Book) HandlerFunc(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(b)
 }
@@ -25,12 +19,6 @@ func (b Book) HandlerFunc(w http.ResponseWriter, r *http.Request) {
 type Message struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
-}
-
-func MakeHello(f Book) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		json.NewEncoder(w).Encode(f)
-	}
 }
 
 func main() {
