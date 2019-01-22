@@ -32,7 +32,7 @@ type Response struct {
 	Market map[string]Data
 }
 
-const apiKey = "ohSCXx8zVkrmUPe1sDvEE1n0KeAuXBw4Jdjwr7Vu8VaQu4R3V4yaPk4JcdEo"
+const apiKey = ""
 
 func main() {
 	router := mux.NewRouter()
