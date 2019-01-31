@@ -52,9 +52,9 @@ func customJokeHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("name body read error: %v", err)
 	}
 
-	jokeUrl := fmt.Sprintf("http://api.icndb.com/jokes/random?firstName=%v&lastName=%v", n.Name, n.Surname)
+	jokeURL := fmt.Sprintf("http://api.icndb.com/jokes/random?firstName=%v&lastName=%v", n.Name, n.Surname)
 
-	joke, err := http.Get(jokeUrl)
+	joke, err := http.Get(jokeURL)
 
 	if err != nil {
 		log.Printf("joke url error: %v", err)
@@ -85,7 +85,7 @@ func getJoke(body []byte) (*jokeResponse, error) {
 	var j = new(jokeResponse)
 	err := json.Unmarshal(body, &j)
 	if err != nil {
-		log.Print(err)
+		log.Printf("joke unmarshal error: %v", err)
 	}
 	return j, nil
 }
@@ -94,7 +94,7 @@ func getName(body []byte) (*nameResponse, error) {
 	var n = new(nameResponse)
 	err := json.Unmarshal(body, &n)
 	if err != nil {
-		log.Print(err)
+		log.Printf("name unmarshal error: %v", err)
 	}
 	return n, nil
 }
