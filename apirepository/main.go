@@ -37,8 +37,6 @@ func main() {
 	fmt.Println(n)
 }
 
-var repo []repositories
-
 func getInfo(body []byte) ([]repositories, error) {
 	n := make([]repositories, 0)
 	err := json.Unmarshal(body, &n)
