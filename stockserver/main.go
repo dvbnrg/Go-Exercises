@@ -28,10 +28,6 @@ type Data struct {
 	Market         string `json:"stock_exchange_short"`
 }
 
-type Response struct {
-	Market map[string]Data
-}
-
 const apiKey = ""
 
 func main() {
