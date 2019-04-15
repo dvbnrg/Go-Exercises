@@ -50,6 +50,7 @@ func loadTransactions() []transaction {
 	return load
 }
 
+// The overall Big-O would be O(n)
 func process(in []transaction, users []user) []user {
 	for _, x := range in {
 		if x.SenderID == users[0].Uuid {
