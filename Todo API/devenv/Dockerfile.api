@@ -5,6 +5,7 @@ ENV LANG en_US.UTF-8
 RUN go get github.com/codegangsta/gin
 RUN go get github.com/julienschmidt/httprouter
 RUN go get github.com/lib/pq
+RUN go get github.com/gin-gonic/gin
 
 ENV GOPATH /go
 WORKDIR /go/src/github.com/rackerlabs/GoCodingChallenge

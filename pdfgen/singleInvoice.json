@@ -1,0 +1,17 @@
+{
+    "bininfo": {"bin_id":1,"join_name":"Eadel","club_id":"9d007936-4742-4b10-8ff8-bf063bd851dc","liquidator_name":"Lakin Inc","liquidator_number":"8428603952"},
+    "items":
+        [
+            {"bin_item_id":1,"item_description":"Customer-focused solution-oriented approach","item_category":"eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl","item_number":1,"item_quantity":36,"item_retail_amount":"$85.75","liquidator_category_recovery_rate":"$3.70","item_retail_rate":"$182.03","total_item_retail":"$75.35"},
+            {"bin_item_id":96,"item_description":"Managed analyzing alliance","item_category":"open system","item_number":1,"item_quantity":6186,"item_retail_amount":"$18.49","liquidator_category_recovery_rate":"$69.53","item_retail_rate":"$55.64","total_item_retail":"$29.98"},
+            {"bin_item_id":95,"item_description":"Right-sized radical frame","item_category":"client-server","item_number":2,"item_quantity":9402,"item_retail_amount":"$59.24","liquidator_category_recovery_rate":"$44.21","item_retail_rate":"$179.02","total_item_retail":"$10.38"},
+            {"bin_item_id":39,"item_description":"Extended regional approach","item_category":"success","item_number":3,"item_quantity":6929,"item_retail_amount":"$195.86","liquidator_category_recovery_rate":"$7.68","item_retail_rate":"$169.64","total_item_retail":"$65.95"},
+            {"bin_item_id":28,"item_description":"Face to face full-range methodology","item_category":"Object-based","item_number":4,"item_quantity":6311,"item_retail_amount":"$91.70","liquidator_category_recovery_rate":"$47.57","item_retail_rate":"$189.22","total_item_retail":"$74.20"},
+            {"bin_item_id":79,"item_description":"Multi-lateral asynchronous intranet","item_category":"User-centric","item_number":5,"item_quantity":1444,"item_retail_amount":"$191.01","liquidator_category_recovery_rate":"$40.83","item_retail_rate":"$163.71","total_item_retail":"$180.04"},
+            {"bin_item_id":92,"item_description":"Horizontal multimedia orchestration","item_category":"multi-state","item_number":6,"item_quantity":8122,"item_retail_amount":"$68.08","liquidator_category_recovery_rate":"$135.84","item_retail_rate":"$61.58","total_item_retail":"$196.30"},
+            {"bin_item_id":99,"item_description":"Business-focused clear-thinking system engine","item_category":"firmware","item_number":7,"item_quantity":421,"item_retail_amount":"$76.96","liquidator_category_recovery_rate":"$13.96","item_retail_rate":"$107.26","total_item_retail":"$194.43"},
+            {"bin_item_id":10,"item_description":"Programmable regional process improvement","item_category":"Function-based","item_number":8,"item_quantity":3075,"item_retail_amount":"$132.59","liquidator_category_recovery_rate":"$141.74","item_retail_rate":"$39.99","total_item_retail":"$162.81"},
+            {"bin_item_id":75,"item_description":"Cross-group well-modulated access","item_category":"De-engineered","item_number":9,"item_quantity":4074,"item_retail_amount":"$159.58","liquidator_category_recovery_rate":"$30.66","item_retail_rate":"$63.86","total_item_retail":"$123.96"}
+        ],    
+    "totals": {"total_quantity":78,"total_retail":"$153.94"}
+}
