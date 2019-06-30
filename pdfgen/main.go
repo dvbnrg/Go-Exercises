@@ -71,11 +71,21 @@ func main() {
 
 	pdf.Cell(40, 10, "Invoice")
 
-	pdf.Cell(10, 20, string(invoice.Info.BinID))
-	pdf.Cell(20, 30, invoice.Info.ClubID)
-	pdf.Cell(30, 40, invoice.Info.JoinName)
-	pdf.Cell(40, 50, invoice.Info.LiquidatorName)
-	pdf.Cell(50, 60, string(invoice.Info.LiquidatorNumber))
+	// binID := string(invoice.Info.BinID)
+
+	pdf.SetFont("Arial", "", 8)
+
+	// pdf.Cell(40, 20, binID)
+	// pdf.Cell(0, 20, invoice.Info.ClubID)
+	pdf.CellFormat(0, 20, invoice.Info.ClubID, "TRBL", 1, "L", false, 0, "")
+
+	pdf.MultiCell(0, 30, invoice.Info.ClubID, "TRBL", "L", false)
+
+	// pdf.Cell(80, 20, invoice.Info.JoinName)
+	// pdf.Cell(160, 20, invoice.Info.LiquidatorName)
+
+	// liquidatorNumber := string(invoice.Info.LiquidatorNumber)
+	// pdf.Cell(80, 20, liquidatorNumber)
 
 	err = pdf.OutputFileAndClose("Hello.pdf")
 	if err != nil {
