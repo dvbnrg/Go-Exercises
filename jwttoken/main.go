@@ -99,5 +99,5 @@ func main() {
 	router.HandleFunc("/authenticate", CreateTokenEndpoint).Methods("POST")
 	router.HandleFunc("/protected", ProtectedEndpoint).Methods("GET")
 	router.HandleFunc("/test", ValidateMiddleware(TestEndpoint)).Methods("GET")
-	log.Fatal(http.ListenAndServe(":12345", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
